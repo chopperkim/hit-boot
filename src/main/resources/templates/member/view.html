@@ -21,10 +21,10 @@
             <input type="text" th:field="*{phoneNumber}">
         </div>
         <div>
-            <button type="submit">수정</button>
+            <button type="submit" class="btn btn-success">수정</button>
         </div>
         <div>
-            <a th:href="@{/member/delete(id = ${member.id}) }">삭제</a>
+            <a th:href="@{/member/delete(id = ${member.id}) }" class="btn btn-warning">삭제</a>
         </div>
     </form>
 </div>

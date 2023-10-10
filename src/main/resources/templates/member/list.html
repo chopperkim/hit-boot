@@ -24,18 +24,19 @@
 <!--    </form>-->
     <h3 class="h4">회원 목록</h3>
     <div class="text-end">
-        <a href="/member/insert" class="btn btn-primary">새글</a>
+        <a href="/member/insert" class="btn btn-primary">회원 등록</a>
     </div>
     <table class="table table-striped">
         <tr>
-            <th>글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일자</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>주소</th>
+            <th>휴대전화번호</th>
         </tr>
         <tr th:each="member: ${members}">
-            <td th:text="${member.id}">1</td>
-            <td><a th:href="@{/member/{id}(id = ${member.id}) }" th:text="${member.name}">첫번째 글</a></td>
+            <td th:text="${member.id}">id</td>
+            <td><a th:href="@{/member/{id}(id = ${member.id}) }" th:text="${member.name}">이름</a></td>
             <td th:text="${member.email}"></td>
             <td th:text="${member.address}"></td>
             <td th:text="${member.phoneNumber}"></td>
