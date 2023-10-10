@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.hit.boot.board.BoardMapper">
+    <select id="selectBoards">
+        SELECT
+            no,
+            title,
+            content,
+            name writer,
+            create_date,
+            modify_date
+        FROM
+            board a
+            LEFT OUTER JOIN member b
+                ON a.writer = b.id
+        <where>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                <choose>
+                    <when test='"t".equals(searchCondition)'>
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test='"c".equals(searchCondition)'>
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test='"tc".equals(searchCondition)'>
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                        OR content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        ORDER BY
+            no
+        LIMIT #{} OFFSET #{}
+    </select>
+
+    <select id="selectBoardsTotCnt">
+        SELECT
+            count(*) totcnt
+        FROM
+            board
+        <where>
+            <if test="searchKeyword != null and searchKeyword != ''">
+                <choose>
+                    <when test='"t".equals(searchCondition)'>
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test='"c".equals(searchCondition)'>
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test='"tc".equals(searchCondition)'>
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                        OR content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+
+    </select>
+
+    <select id="selectBoard">
+        SELECT
+            no,
+            title,
+            content,
+            writer,
+            create_date,
+            modify_date
+        FROM
+            board
+        WHERE
+            no = #{no}
+    </select>
+</mapper>

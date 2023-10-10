@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form th:object="${board}" th:action="@{/board/update}" method="post">
+        <div th:text="${board.createDate}"></div>
+        <div th:text="${board.modifyDate}"></div>
+        <input type="hidden" th:field="*{no}">
+        <div>
+            <input type="text" th:field="*{title}">
+        </div>
+        <div>
+            <textarea cols="40" rows="20" th:field="*{content}"></textarea>
+        </div>
+        <div>
+            <button type="submit">수정</button>
+        </div>
+        <div>
+            <a th:href="@{/board/delete(no = ${board.no}) }">삭제</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

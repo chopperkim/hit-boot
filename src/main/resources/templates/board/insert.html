@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 등록</title>
+</head>
+<body>
+<div>
+  <form method="post" th:action="@{/board/insert}" th:object="${board}">
+    <div>
+      <input type="text" th:field="*{title}">
+    </div>
+    <div>
+      <textarea cols="40" rows="20" name="content" th:field="*{content}"></textarea>
+    </div>
+    <div>
+      <button type="submit">등록</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
